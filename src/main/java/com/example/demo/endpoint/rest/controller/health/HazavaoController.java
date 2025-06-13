@@ -1,5 +1,4 @@
-com.example.demo.endpoint.rest.controller.health
-
+package com.example.demo.endpoint.rest.health;
 
 import com.example.hazavao.service.OpenAiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class HazavaoController {
 
     @Autowired
-    private OpenAiService openAiService;
+    private HazavaoService openAiService;
 
     @GetMapping
     public ResponseEntity<String> hazavao(@RequestParam String teny) {
