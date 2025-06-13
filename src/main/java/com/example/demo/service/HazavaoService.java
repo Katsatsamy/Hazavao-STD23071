@@ -1,4 +1,4 @@
-package com.example.demo.service
+package com.example.demo.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -8,9 +8,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Map;
 
-
 @Service
-public class HazavaoService{
+public class HazavaoService {
 
     @Value("${openai.api.key}")
     private String apiKey;
@@ -27,7 +26,7 @@ public class HazavaoService{
 
         Map<String, Object> message = Map.of(
                 "role", "user",
-                "content", "Give the malagasy definition of this word " + word
+                "content", "Azafady hazavao amin'ny teny malagasy ny dikan'ny teny: " + word
         );
 
         Map<String, Object> requestBody = Map.of(
@@ -44,7 +43,7 @@ public class HazavaoService{
             Map<String, Object> messageObj = (Map<String, Object>) choices.get(0).get("message");
             return (String) messageObj.get("content");
         } catch (Exception e) {
-            throw new RuntimeException("Don't match");
+            throw new RuntimeException("Error fetching definition: " + e.getMessage(), e);
         }
     }
 }
